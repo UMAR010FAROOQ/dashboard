@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- remix -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- aos library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <style>
+    :root{
+      --border: 7px;
+    }
+    .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .navbar-brand{
+        margin-right: -3em !important;
+    }
+
+    .image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    /* background: rgba(0, 0, 0, 0.5); */
+    color: white;
+  }
+
+  /* tab list css */
+  .nav-tabs .nav-item {
+      margin-bottom: -1px;
+    }
+    .nav-tabs .nav-link {
+      border: none;
+      border-radius: 0;
+      color: #333;
+      background: none;
+    }
+    .nav-tabs .nav-link.active {
+      color: #0dcaf0;
+      border-color: transparent;
+      border-bottom: 2px solid #0dcaf0;
+    }
+    #tabs img{
+      width: 380px !important;
+      height: 220px !important;
+    }
+    .gallery img{
+      width: -webkit-fill-available !important;
+      height: 209px !important;
+    }
+
+    @media (min-width: 992px) {
+      .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Fixed-top navbar for larger screens -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-block sticky-top shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-lg-5" href="#">
+      <img class="img-fluid w-25" src="assets/img/logo.png" alt="logo">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Search Professionals</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Doctors
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Doctors 1</a></li>
+            <li><a class="dropdown-item" href="#">Doctors 2</a></li>
+            <li><a class="dropdown-item" href="#">Doctors 3</a></li>
+            <!-- Add more items as needed -->
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Lawyers
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Lawyer 1</a></li>
+              <li><a class="dropdown-item" href="#">Lawyer 2</a></li>
+              <li><a class="dropdown-item" href="#">Lawyer 3</a></li>
+              <!-- Add more items as needed -->
+            </ul>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">News</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Blog, Events & Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Chat</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-globe"></i> English</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="ri-menu-2-line"></i></a>
+        </li>
+        <li class="nav-item bg-secondary bg-opacity-25">
+          <a class="nav-link" href="#"><i class="fas fa-user-circle"></i> Dominic Keller</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<!-- Offcanvas navbar for smaller screens -->
+<nav class="navbar bg-light d-lg-none">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+        <img class="img-fluid w-25" src="assets/img/logo.png" alt="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Dashboard</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Search Professionals</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Doctors
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Doctors 1</a></li>
+                <li><a class="dropdown-item" href="#">Doctors 2</a></li>
+                <li><a class="dropdown-item" href="#">Doctors 3</a></li>
+                <!-- Add more items as needed -->
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Lawyers
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Lawyer 1</a></li>
+                <li><a class="dropdown-item" href="#">Lawyer 2</a></li>
+                <li><a class="dropdown-item" href="#">Lawyer 3</a></li>
+                <!-- Add more items as needed -->
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Blog, Events & Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Chat</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-globe"></i> English</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
+            </li>
+            <li class="nav-item">
+              <!-- <a class="nav-link" href="#"><i class="ri-menu-2-line"></i></a> -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-user-circle"></i> Dominic Keller</a>
+            </li>
+          </ul>
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="section ms-4 me-4">
+  <!-- Cards section -->
+  <div class="container-fluid mt-5">
+    <div class="row">
+
+      <div class="col-lg-3 col-md-6 mb-2 " data-aos="zoom-in-right">
+        <div class="card p-4 border border-success " style="border-bottom: var(--border) solid #198754 !important;">
+          <div class="row text-secondary">
+            <div class="col-10">
+              <h6 class="card-text">Total Chats</h6>
+              <h5 class="card-title">500</h5>
+              <p class="card-text">
+                <i class="fa-solid fa-arrow-trend-up text-success"></i>
+                5.27% Since last Year
+              </p>
+            </div>
+            <div class="col-2">
+              <i class="fa-solid fa-user-group fa-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-2" data-aos="zoom-in-right">
+        <div class="card p-4 border border-success " style="border-bottom: var(--border) solid #198754 !important;">
+          <div class="row text-secondary">
+            <div class="col-10">
+              <h6 class="card-text">Doctors in your Contact</h6>
+              <h5 class="card-title">500</h5>
+              <p class="card-text">
+                <i class="fa-solid fa-arrow-trend-up text-success"></i>
+                5.27% Since last Year
+              </p>
+            </div>
+            <div class="col-2">
+              <i class="fa-solid fa-user-doctor fa-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-2" data-aos="zoom-in-left">
+        <div class="card p-4 border border-success " style="border-bottom: var(--border) solid #198754 !important;">
+          <div class="row text-secondary">
+            <div class="col-10">
+              <h6 class="card-text">Lawyers in Contact</h6>
+              <h5 class="card-title">500</h5>
+              <p class="card-text">
+                <i class="fa-solid fa-arrow-trend-down text-danger"></i>
+                5.27% Since last Year
+              </p>
+            </div>
+            <div class="col-2">
+              <i class="fa-solid fa-sliders fa-rotate-90 fa-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-2" data-aos="zoom-in-left">
+        <div class="card p-4 border border-success " style="border-bottom: var(--border) solid #198754 !important;">
+          <div class="row text-secondary">
+            <div class="col-10">
+              <h6 class="card-text">Favorites Professionals</h6>
+              <h5 class="card-title">500</h5>
+              <p class="card-text">
+                <i class="fa-solid fa-arrow-trend-up text-success"></i>
+                5.27% Since last Year
+              </p>
+            </div>
+            <div class="col-2">
+              <i class="fa-solid fa-bookmark fa-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- gallery -->
+  <div class="section mt-lg-5">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-lg-6 mb-3">
+          <img class="img-fluid rounded" src="assets/img/img1.jpg" alt="">
+        </div>
+
+        <div class="col-lg-6 gallery">
+          <div class="row">
+            <div class="col-lg-12 mb-3">
+              <img class="img-fluid rounded" src="assets/img/img2.jpg" alt="">
+            </div>
+            <div class="col-lg-12">
+              <img class="img-fluid rounded" src="assets/img/img3.jpg" alt="">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="container-fluid mt-3 mb-4 mt-lg-3 mb-lg-5">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-4 col-sm-12 mb-2" data-aos="zoom-in">
+          <div class="position-relative">
+            <img src="assets/img/img1.jpg" alt="" class="img-fluid rounded">
+            <div class="image-overlay d-flex justify-content-between">
+              <div class="d-flex flex-column align-items-start">
+                <p class="mb-2">Feb 03, </p>
+                <p class="mb-1">2023</p>
+                <h4 class="text-left">The Excitement Of Sports</h4>
+              </div>
+              <div class="d-flex flex-column align-items-end">
+                <p class="mb-1">1.2k</p>
+                <p class="mb-0">views</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-12 mb-2" data-aos="zoom-in">
+          <div class="position-relative">
+            <img src="assets/img/img1.jpg" alt="" class="img-fluid rounded">
+            <div class="image-overlay d-flex justify-content-between">
+              <div class="d-flex flex-column align-items-start">
+                <p class="mb-2">Feb 03, </p>
+                <p class="mb-1">2023</p>
+                <h4 class="text-left">The Excitement Of Sports</h4>
+              </div>
+              <div class="d-flex flex-column align-items-end">
+                <p class="mb-1">1.2k</p>
+                <p class="mb-0">views</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-12 mb-2" data-aos="zoom-in">
+          <div class="position-relative">
+            <img src="assets/img/img1.jpg" alt="" class="img-fluid rounded">
+            <div class="image-overlay d-flex justify-content-between">
+              <div class="d-flex flex-column align-items-start">
+                <p class="mb-2">Feb 03, </p>
+                <p class="mb-1">2023</p>
+                <h4 class="text-left">The Excitement Of Sports</h4>
+              </div>
+              <div class="d-flex flex-column align-items-end">
+                <p class="mb-1">1.2k</p>
+                <p class="mb-0">views</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- tab list -->
+  <section id="tabs" class="mt-lg-5 mt-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <nav>
+            <div class="nav nav-tabs nav-fill fw-bold" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-category1-tab" data-bs-toggle="tab" href="#nav-category1"
+                role="tab" aria-controls="nav-category1" aria-selected="true">Category 1</a>
+              <a class="nav-item nav-link" id="nav-category2-tab" data-bs-toggle="tab" href="#nav-category2" role="tab"
+                aria-controls="nav-category2" aria-selected="false">Category 2</a>
+              <a class="nav-item nav-link" id="nav-category3-tab" data-bs-toggle="tab" href="#nav-category3" role="tab"
+                aria-controls="nav-category3" aria-selected="false">Category 3</a>
+              <a class="nav-item nav-link" id="nav-category4-tab" data-bs-toggle="tab" href="#nav-category4" role="tab"
+                aria-controls="nav-category4" aria-selected="false">Category 4</a>
+            </div>
+          </nav>
+
+          <div class="tab-content py-3" id="nav-tabContent">
+
+            <div class="tab-pane fade show active" id="nav-category1" role="tabpanel"
+              aria-labelledby="nav-category1-tab">
+              <div class="row mb-5 mt-4 mt-lg-3">
+                <div class="col-lg-4 mb-lg-0 mb-3" data-aos="fade-right">
+                  <img src="assets/tab/img5.jpg" alt="" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-8" data-aos="fade-left">
+                  <h5>Good Day To Take A Photo With Your Favorite Style</h5>
+                  <p class="text-secondary w-75">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.
+                    Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make book.</p>
+                  <div class="d-flex mt-3 mt-lg-5 text-secondary">
+                    <p>Apr 22, 2023</p>
+                    <p class="ms-4">15 Min Read</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-5 mt-4 mt-lg-3">
+                <div class="col-lg-4 mb-lg-0 mb-3" data-aos="fade-right">
+                  <img src="assets/tab/img1.jpg" alt="" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-8" data-aos="fade-left">
+                  <h5>Good Day To Take A Photo With Your Favorite Style</h5>
+                  <p class="text-secondary w-75">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.
+                    Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make book.</p>
+                  <div class="d-flex mt-3 mt-lg-5 text-secondary">
+                    <p>Apr 22, 2023</p>
+                    <p class="ms-4">15 Min Read</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-5 mt-4 mt-lg-3">
+                <div class="col-lg-4 mb-lg-0 mb-3" data-aos="fade-right">
+                  <img src="assets/tab/img3.jpg" alt="" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-8" data-aos="fade-left">
+                  <h5>Good Day To Take A Photo With Your Favorite Style</h5>
+                  <p class="text-secondary w-75">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.
+                    Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make book.</p>
+                  <div class="d-flex mt-3 mt-lg-5 text-secondary">
+                    <p>Apr 22, 2023</p>
+                    <p class="ms-4">15 Min Read</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="nav-category2" role="tabpanel" aria-labelledby="nav-category2-tab">
+              <div class="row mb-5 mt-4 mt-lg-3">
+                <div class="col-lg-4 mb-lg-0 mb-3">
+                  <img src="assets/tab/img2.jpg" alt="" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-8">
+                  <h5>Good Day To Take A Photo With Your Favorite Style</h5>
+                  <p class="text-secondary w-75">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.
+                    Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make book.</p>
+                  <div class="d-flex mt-3 mt-lg-5 text-secondary">
+                    <p>Apr 22, 2023</p>
+                    <p class="ms-4">15 Min Read</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="nav-category3" role="tabpanel" aria-labelledby="nav-category3-tab">
+              <div class="row mb-5 mt-4 mt-lg-3">
+                <div class="col-lg-4 mb-lg-0 mb-3">
+                  <img src="assets/tab/img3.jpg" alt="" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-8">
+                  <h5>Good Day To Take A Photo With Your Favorite Style</h5>
+                  <p class="text-secondary w-75">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.
+                    Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make book.</p>
+                  <div class="d-flex mt-3 mt-lg-5 text-secondary">
+                    <p>Apr 22, 2023</p>
+                    <p class="ms-4">15 Min Read</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="nav-category4" role="tabpanel" aria-labelledby="nav-category4-tab">
+              <div class="row mb-5 mt-4 mt-lg-3">
+                <div class="col-lg-4 mb-lg-0 mb-3">
+                  <img src="assets/tab/img1.jpg" alt="" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-8">
+                  <h5>Good Day To Take A Photo With Your Favorite Style</h5>
+                  <p class="text-secondary w-75">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.
+                    Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make book.</p>
+                  <div class="d-flex mt-3 mt-lg-5 text-secondary">
+                    <p>Apr 22, 2023</p>
+                    <p class="ms-4">15 Min Read</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- load more -->
+<p class="text-center text-secondary mb-5">Load More</p>
+<hr>
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- aos library -->
+<script>
+  AOS.init();
+</script>
+</body>
+</html>
